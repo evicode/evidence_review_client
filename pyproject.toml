@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "evidence-review"
+version = "1.7.5"
+description = "Desktop tool for reviewing evidence media and logging timestamped observations"
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = { text = "MIT" }
+authors = [{ name = "Evidence Review" }]
+
+dependencies = [
+    "PySide6~=6.11",
+    "python-mpv~=1.0",
+    "httpx~=0.28",
+    "pydantic~=2.13",
+    "pydantic-settings~=2.15",
+    "platformdirs~=4.11",
+    "keyring~=25.7",
+    "openpyxl~=3.1",
+    "tomli-w~=1.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest~=9.1",
+    "pytest-cov~=7.0",
+    "ruff~=0.16",
+]
+build = [
+    "pyinstaller~=6.22",
+    # Only used by installer/make_icon.py to generate app.ico at build time.
+    "Pillow~=12.3",
+]
+
+[project.gui-scripts]
+evidence-review = "evidence_review.__main__:main"
+
+[project.scripts]
+evidence-review-cli = "evidence_review.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/evidence_review"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "server"]
+filterwarnings = ["error::DeprecationWarning:evidence_review.*"]

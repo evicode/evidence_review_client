@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build artefacts
+build/
+dist/
+installer/build/
+installer/dist/
+installer/.venv-build/
+*.spec.bak
+
+# Vendored native libraries (fetched by installer/fetch_libmpv.ps1)
+vendor/
+
+# Runtime data
+*.db
+*.db-wal
+*.db-shm
+server/.env
+server/evidence_server.db
+snapshots/
+exports/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
