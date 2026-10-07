@@ -1,0 +1,32 @@
+target-version = "py311"
+line-length = 100
+src = ["src", "server", "tests"]
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "C4",   # comprehensions
+    "BLE",  # blind except - every one must be justified in place
+    "N",    # pep8-naming
+    "RUF",  # ruff-specific
+]
+ignore = [
+    "E501",    # line length is handled by the formatter
+    "B008",    # callables in argument defaults are deliberate here
+    "RUF012",  # mutable class attrs need ClassVar; noisy with Qt
+    "SIM905",  # a triple-quoted .split() list is more readable than 60 string literals
+    "UP042",   # str+Enum is deliberate: it keeps .value explicit at call sites
+    "N818",    # MpvNotAvailable reads better at the `except` site than ...Error
+]
+
+# Qt method overrides must use Qt's camelCase names; those are marked with an
+# inline `# noqa: N802 - Qt naming` at each site rather than suppressed wholesale.
+
+[format]
+quote-style = "double"
